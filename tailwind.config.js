@@ -3,6 +3,7 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			elo: ["Thasadith", "sans-serif"],
+			teamName: ["'Roboto Slab'", "serif"],
 			nickname: ["Quicksand", "sans-serif"]
 		},
 		extend: {}

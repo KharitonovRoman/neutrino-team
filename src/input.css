@@ -1,55 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Quicksand:wght@300;400&family=Roboto:wght@100;300&family=Thasadith:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Quicksand:wght@300;400&family=Roboto:wght@100;300&family=Thasadith:wght@400;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.progress-gradient {
+.neutrino-progress-gradient {
 	background-image: linear-gradient(
 		to right,
-		theme("colors.green.600") 0%,
-		theme("colors.green.600") 25%,
-		theme("colors.yellow.400") 25%,
-		theme("colors.yellow.400") 75%,
-		theme("colors.orange.500") 75%,
-		theme("colors.orange.500") 100%,
-		theme("colors.red.600") 100%
-			/*
-		theme("colors.green.600") 0%,
-		theme("colors.green.600") 20%,
-		theme("colors.yellow.400") 26%,
+		theme("colors.slate.200") 10%,
+		theme("colors.green.600") 10%,
+		theme("colors.green.600") 30%,
+		theme("colors.yellow.400") 30%,
 		theme("colors.yellow.400") 70%,
-		theme("colors.orange.500") 80%,
-		theme("colors.orange.500") 95%,
-		theme("colors.red.600") 100%
-		*/
-			/* theme("colors.slate.100") 0%,
-		theme("colors.slate.100") 5%,
-		theme("colors.slate.100") 10%,
-		theme("colors.slate.100") 15%,
-		theme("colors.slate.100") 20%,
-		theme("colors.slate.100") 25%,
-		theme("colors.slate.100") 30%,
-		theme("colors.slate.100") 35%,
-		theme("colors.slate.100") 40%,
-		theme("colors.green.600") 45%,
-		theme("colors.green.600") 50%,
-		theme("colors.green.600") 55%,
-		theme("colors.yellow.300") 60%,
-		theme("colors.yellow.300") 65%,
-		theme("colors.yellow.300") 70%,
-		theme("colors.yellow.300") 75%,
-		theme("colors.yellow.300") 80%,
-		theme("colors.orange.600") 85%,
-		theme("colors.orange.600") 90%,
-		theme("colors.orange.600") 95%,
-		theme("colors.red.600") 100% */
-			/* theme("colors.slate.100") 0%,
-		theme("colors.green.600") 40%,
-		theme("colors.yellow.300") 55%,
-		theme("colors.orange.600") 85%,
-		theme("colors.red.600") 100%
-		*/
+		theme("colors.orange.500") 70%,
+		theme("colors.orange.500") 90%,
+		theme("colors.red.600") 90%
 	);
 	background-clip: content-box, padding-box;
+}
+
+.navi-progress-gradient {
+	background-image: linear-gradient(
+		to right,
+		theme("colors.red.600") 16.67%,
+		theme("colors.red.700") 16.67%,
+		theme("colors.red.700") 50%,
+		theme("colors.red.800") 50%,
+		theme("colors.red.800") 83.33%,
+		theme("colors.red.900") 83.33%
+	);
+	background-clip: content-box, padding-box;
+}
+
+.neutrino-gradient {
+	background-image: linear-gradient(
+		to right,
+		theme("colors.yellow.500") 0%,
+		theme("colors.orange.500") 33%,
+		theme("colors.red.700") 90%
+	);
+	background-clip: text;
+	color: transparent;
 }
