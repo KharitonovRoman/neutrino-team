@@ -4,32 +4,52 @@ import Title from "../components/title";
 import Users from "../components/users";
 import Progress from "../components/progress";
 import api from "../../api";
+import { getPlayers } from "../utils/faceit";
+import Loader from "../utils/Loader";
 
 const TeamPage = () => {
 	const params = useParams();
 	const teamName = params.teamName || "neutrino";
+	const players = api.users.fetchAll();
+	const teamPlayers = players.filter((player) => player.team === teamName);
 	const [users, setUsers] = useState([]);
-	const handleMoveAvatar = (userId) => {
+	const [isLoading, setIsLoading] = useState(false);
+	const handleMoveAvatar = (nickname) => {
 		setUsers((prevState) =>
 			prevState.map((user) =>
-				user.id === userId ? { ...user, isMoved: !user.isMoved } : user
+				user.nickname === nickname
+					? { ...user, isMoved: !user.isMoved }
+					: user
 			)
 		);
 	};
 
-	useEffect(() => {
-		setUsers(api.users.fetchUsers(teamName));
+	useEffect(async () => {
+		setIsLoading(true);
+		setUsers(await getPlayers(teamPlayers));
 	}, [teamName]);
+
+	useEffect(() => {
+		if (users.length) {
+			setIsLoading(false);
+		}
+	}, [users]);
 
 	return (
 		<>
 			<Title teamName={teamName} />
-			<Users users={users} />
-			<Progress
-				users={users}
-				teamName={teamName}
-				onMoveAvatar={handleMoveAvatar}
-			/>
+			{!isLoading ? (
+				<>
+					<Users users={users} />
+					<Progress
+						users={users}
+						teamName={teamName}
+						onMoveAvatar={handleMoveAvatar}
+					/>
+				</>
+			) : (
+				<Loader />
+			)}
 		</>
 	);
 };

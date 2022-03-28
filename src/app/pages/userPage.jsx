@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import API from "../../api";
+import { getPlayer } from "../utils/faceit";
+import Loader from "../utils/Loader";
 
 const UserPage = () => {
 	const params = useParams();
-	const userId = params.userId;
-	const user = API.users.fetchUser(userId);
+	const nickname = params.nickname;
+	const [user, setUser] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(async () => {
+		setIsLoading(true);
+		setUser(await getPlayer(nickname));
+	}, [params]);
+
+	useEffect(() => {
+		if (user.nickname) {
+			setIsLoading(false);
+		}
+	}, [user]);
 
 	const goBack = () => {
 		history.back();
 	};
 
-	return (
+	return !isLoading && Object.keys(user).length > 0 ? (
 		<div className="shadow sm:rounded-lg mt-8 bg-white text-2xl">
 			<div className="flex justify-center items-center">
 				<span className="hidden sm:block">
@@ -45,6 +58,27 @@ const UserPage = () => {
 							<li className="pl-3 pr-4 py-3 flex items-center">
 								<div className="w-0 flex-1 flex items-center">
 									<span className="text-base font-medium text-gray-500">
+										Steam
+									</span>
+								</div>
+								<div className="flex-shrink-0">
+									<span className="font-semibold text-3xl font-elo">
+										<a
+											href={`https://steamcommunity.com/profiles/${user.steam}`}
+											target={"_blank"}
+											rel="noreferrer"
+										>
+											<img
+												src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg"
+												className="h-10"
+											/>
+										</a>
+									</span>
+								</div>
+							</li>
+							<li className="pl-3 pr-4 py-3 flex items-center">
+								<div className="w-0 flex-1 flex items-center">
+									<span className="text-base font-medium text-gray-500">
 										Facit Level
 									</span>
 								</div>
@@ -68,23 +102,31 @@ const UserPage = () => {
 									</span>
 								</div>
 							</li>
-							<li className="pl-3 pr-4 py-3 flex items-center">
-								<div className="w-0 flex-1 flex items-center">
-									<span className="text-base font-medium text-gray-500">
-										Team
-									</span>
-								</div>
-								<div className="flex-shrink-0">
-									<span className="font-semibold text-3xl font-elo">
-										{user.team}
-									</span>
-								</div>
-							</li>
+
+							{user.stats.map(([title, value], index) => (
+								<li
+									key={index}
+									className="pl-3 pr-4 py-3 flex items-center"
+								>
+									<div className="w-0 flex-1 flex items-center">
+										<span className="text-base font-medium text-gray-500">
+											{title}
+										</span>
+									</div>
+									<div className="flex-shrink-0">
+										<span className="font-semibold text-xl font-elo">
+											{value}
+										</span>
+									</div>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+	) : (
+		<Loader />
 	);
 };
 

@@ -42,7 +42,7 @@ const Progress = ({ users, teamName, onMoveAvatar }) => {
 						left: getLeftInPercent(user.elo) + "%",
 						top: (user.isMoved ? -40 : 0) + "px"
 					}}
-					onClick={() => onMoveAvatar(user.id)}
+					onClick={() => onMoveAvatar(user.nickname)}
 				>
 					<img
 						src={user.avatar}

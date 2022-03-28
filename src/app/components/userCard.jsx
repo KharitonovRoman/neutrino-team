@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = ({ user }) => {
 	return (
 		<div className="bg-white border border-gray-200 rounded-lg text-center shadow-xl w-60 m-1">
-			<Link to={`/users/${user.id}`}>
+			<Link to={`/users/${user.nickname}`}>
 				<img src={user.avatar} className="rounded-t-lg" />
 			</Link>
 
@@ -23,11 +25,22 @@ const UserCard = ({ user }) => {
 				</a>
 			</div>
 			<p className="text-2xl font-bold pt-3 pb-2 font-nickname hover:text-blue-700">
-				<Link to={`/users/${user.id}`}>{user.nickname}</Link>
+				<Link to={`/users/${user.nickname}`}>{user.nickname}</Link>
 			</p>
-			<p className="font-semibold pt-2 pb-5 text-sm text-gray-500">
+			<p className="font-semibold py-3 text-sm text-gray-500">
 				Faceit elo
 				<p className="text-3xl font-elo text-blue-500">{user.elo}</p>
+			</p>
+			<p className="pt-2 pb-3 text-sm text-gray-500">
+				{user.recentResults.map((result, index) => (
+					<FontAwesomeIcon
+						key={index}
+						icon={result ? faCheck : faXmark}
+						className={`text-2xl mx-1 ${
+							result ? "text-lime-700" : "text-rose-700"
+						}`}
+					/>
+				))}
 			</p>
 		</div>
 	);

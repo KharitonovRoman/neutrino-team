@@ -8,7 +8,7 @@ import App from "./app/App";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
+		<BrowserRouter basename={"cs"}>
 			<App />
 		</BrowserRouter>
 	</React.StrictMode>,

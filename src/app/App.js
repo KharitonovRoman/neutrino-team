@@ -9,7 +9,7 @@ function App() {
 			<Switch>
 				<Route path="/" exact component={TeamPage} />
 				<Route path="/team/:teamName" exact component={TeamPage} />
-				<Route path="/users/:userId" exact component={UserPage} />
+				<Route path="/users/:nickname" exact component={UserPage} />
 				<Redirect to="/" />
 			</Switch>
 		</div>
