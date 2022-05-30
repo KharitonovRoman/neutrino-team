@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-team",
-	"homepage": "cs",
+	"homepage": "/cs",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {

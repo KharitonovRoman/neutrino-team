@@ -6,6 +6,9 @@ const Progress = ({ users, teamName, onMoveAvatar }) => {
 		neutrino: [
 			650, 800, 950, 1100, 1250, 1400, 1550, 1700, 1850, 2000, 2150
 		],
+		custom: [0, ...users.map((user) => user.elo)].sort(
+			(elo1, elo2) => elo1 - elo2
+		),
 		navi: [2500, 3000, 3500, 4000, 4500, 5000, 5500]
 	};
 

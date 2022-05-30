@@ -42,3 +42,12 @@
 	background-clip: text;
 	color: transparent;
 }
+
+.custom-progress-gradient {
+	background-image: linear-gradient(
+		to right,
+		theme("colors.sky.100") 0,
+		theme("colors.sky.600") 100%
+	);
+	background-clip: content-box, padding-box;
+}

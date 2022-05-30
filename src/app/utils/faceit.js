@@ -47,6 +47,7 @@ export async function getPlayer(nickname) {
 			"https://assets.faceit-cdn.net/avatars/bf5030f0-bf42-4070-b8a7-ca63564b2dd3_1626635753723.jpg",
 		elo: playerData.games.csgo.faceit_elo,
 		level: playerData.games.csgo.skill_level,
+		steam: playerData.steam_id_64,
 		stats: Object.entries(playerStats.lifetime)
 			.filter(([title]) => title !== "Recent Results")
 			.sort((entry1, entry2) => entry1[0].localeCompare(entry2[0])),
